@@ -271,14 +271,25 @@ function checkAnswer(levelIndex, numbers) {
     return;
   }
 
-  let isValid = false;
-  outer: for (const perm of permute(numbers)) {
-    for (const opCombo of opCombos(numbers.length - 1)) {
-      if (evalLTR(perm, opCombo) === 11) { isValid = true; break outer; }
+  // Evaluate the user's actual expression
+  let result;
+  try {
+    // Only allow safe characters before evaluating
+    if (!/^[0-9+\-*/() ]+$/.test(input)) {
+      feedback.textContent = "No, try again!";
+      feedback.classList.remove("correct");
+      animateCard(levelIndex, 'shake');
+      return;
     }
+    result = Function('"use strict"; return (' + input + ')')();
+  } catch {
+    feedback.textContent = "No, try again!";
+    feedback.classList.remove("correct");
+    animateCard(levelIndex, 'shake');
+    return;
   }
 
-  if (isValid) {
+  if (result === 11) {
     scored[levelIndex] = true;
     const pts = levelPoints[levelIndex];
     feedback.textContent = "🎆 Correct!";
