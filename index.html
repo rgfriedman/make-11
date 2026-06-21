@@ -1,24 +1,75 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-    <head> 
-        <meta charset="UTF-8"> 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <title>Make 11</title>
-          <link rel="stylesheet" href="style.css"> 
-        </head>
-         <body> 
-            <h1>Make 11</h1>
-            <p>Happy Birthday, Dad! 🎂 <br>
-            This game is inspired by you and your game of 11.<br>
-             This is a little daily math challenge to keep the brain sharp!<br><br>
-            <strong>How to play:</strong><br>
-    Each day has <strong>3 levels</strong> of increasing difficulty.<br>
-    Your goal: combine <strong>all the given numbers</strong> using <strong>+, -, *, /</strong> to reach exactly <strong>11</strong>.<br>
-    Use <strong>each number exactly once</strong>.<br>
-    All intermediate steps must stay integers (no fractions or decimals).<br>
-    If your answer is incorrect, you’ll get feedback “No, try again!” — keep experimenting!<br>
-    Good luck and have fun! 🧠✨</p>
-              <div id="levels-container"></div> 
-              <script src="script.js"></script>
-             </body>
-              </html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make 11</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <header>
+        <h1>Make 11</h1>
+        <p class="description">A daily math challenge to stay sharp!</p>
+      </header>
+
+      <nav class="tabs">
+        <button class="tab-btn active" onclick="showTab('game')">🎮 Today</button>
+        <button class="tab-btn" onclick="showTab('stats')">📊 My Stats</button>
+      </nav>
+
+      <!-- Game tab -->
+      <div id="tab-game" class="tab-content">
+        <div class="how-to-play">
+          <div class="rules">
+            Each day has <strong>3 levels</strong> of increasing difficulty.<br>
+            Your goal: combine <strong>all the given numbers</strong> using <strong>+, -, *, /</strong> to reach exactly <strong>11</strong>.<br>
+            Use <strong>each number exactly once</strong>.<br>
+            All intermediate steps must stay integers (no fractions or decimals).<br>
+            Wrap <strong>* and /</strong> in parentheses, e.g. <code>(3*4)+2</code>.<br>
+            <br>
+            Good luck and have fun! 🧠✨
+          </div>
+        </div>
+        <div id="levels-container"></div>
+      </div>
+
+      <!-- Stats tab -->
+      <div id="tab-stats" class="tab-content hidden">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="stat-played">0</div>
+            <div class="stat-label">Played</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-avg">0.0</div>
+            <div class="stat-label">Avg Score</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-streak">0</div>
+            <div class="stat-label">Streak 🔥</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-best-streak">0</div>
+            <div class="stat-label">Best Streak</div>
+          </div>
+        </div>
+
+        <div class="stats-section">
+          <h3>Score Distribution</h3>
+          <div id="score-distribution"></div>
+        </div>
+
+        <div class="stats-section">
+          <h3>Recent Games</h3>
+          <div id="history-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
